@@ -17,6 +17,10 @@ import { cn } from "../../lib/utils";
 
 const navItems = [
   { to: "/dashboard", label: "Dashboard", icon: Gauge },
+  { to: "/tce/itens", label: "Itens TCE", icon: Layers3 },
+  { to: "/tce/pendencias", label: "Pendencias TCE", icon: ListChecks },
+  { to: "/tce/revisao", label: "Revisao TCE", icon: ShieldCheck },
+  { to: "/tce/previa", label: "Previa TCE", icon: ScrollText },
   { to: "/dashboard-formularios", label: "Dashboard Formularios", icon: ClipboardPen },
   { to: "/unidades-setores", label: "Setores", icon: UsersRound },
   { to: "/matriz-itens", label: "Itens do Relatorio", icon: Layers3 },

@@ -1,4 +1,5 @@
 export type PerfilUsuario = "admin" | "coordenador" | "setor" | "revisor";
+export type PerfilTce = "admin" | "consolidador" | "setor" | "revisor";
 
 export type ParteRelatorio = "geral" | "especifica" | "apendice" | "anexo";
 export type Criticidade = "baixa" | "media" | "alta";
@@ -17,6 +18,108 @@ export type TipoFormularioCodigo =
   | "PROGRAMAS_PROJETOS"
   | "EVIDENCIAS_ANEXOS";
 export type TendenciaIndicador = "crescimento" | "reducao" | "estabilidade";
+export type ParteTce = "geral" | "especifica" | "apendice" | "anexo" | "rol_responsaveis" | "estrutura_formal";
+export type UnidadeConsolidadaTce = "SEFAZ" | "SARE" | "SATE" | "FUNDA" | "MULTIPLA";
+export type TipoRespostaTce =
+  | "texto"
+  | "tabela"
+  | "indicador"
+  | "financeiro"
+  | "contratos"
+  | "pessoal"
+  | "patrimonio"
+  | "controle"
+  | "projeto"
+  | "estrutura_documental"
+  | "misto";
+export type TipoCampoTce = "text" | "textarea" | "richtext" | "number" | "currency" | "percent" | "date" | "select" | "table" | "file" | "boolean";
+export type StatusAtribuicaoTce = "nao_atribuido" | "atribuido" | "em_preenchimento" | "enviado" | "em_revisao" | "devolvido" | "consolidado" | "aprovado";
+export type StatusVersaoRelatorio = "rascunho" | "em_revisao" | "aprovado";
+
+export interface CampoSchemaTce {
+  name: string;
+  label: string;
+  type: TipoCampoTce;
+  required?: boolean;
+  options?: string[];
+  columns?: CampoSchemaTce[];
+}
+
+export interface ItemTce {
+  id: string;
+  codigo: string;
+  titulo: string;
+  descricao_exigencia: string;
+  fundamento_normativo: string;
+  parte: ParteTce;
+  ordem: number;
+  obrigatorio: boolean;
+  aplicavel_sefaz: boolean;
+  unidade_consolidada: UnidadeConsolidadaTce;
+  tipo_resposta: TipoRespostaTce;
+  campos_schema: CampoSchemaTce[];
+  evidencia_obrigatoria: boolean;
+  observacao_orientativa: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AtribuicaoTce {
+  id: string;
+  item_tce_id: string;
+  setor_id: string;
+  responsavel_nome: string;
+  responsavel_cargo: string;
+  responsavel_email: string;
+  prazo_interno: string;
+  status: StatusAtribuicaoTce;
+  observacao_consolidador: string;
+  created_by?: string | null;
+  updated_by?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface RespostaTce {
+  id: string;
+  atribuicao_id: string;
+  texto_original: string;
+  texto_consolidado: string;
+  resposta_json: Record<string, unknown>;
+  fonte_informacao: string;
+  justificativa_ausencia_evidencia: string;
+  observacoes_setor: string;
+  observacoes_revisao: string;
+  created_by?: string | null;
+  updated_by?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface EvidenciaTce {
+  id: string;
+  resposta_id: string;
+  item_tce_id: string;
+  nome_arquivo: string;
+  storage_path: string;
+  tipo_arquivo: string;
+  descricao: string;
+  fonte: string;
+  uploaded_by?: string | null;
+  created_at: string;
+}
+
+export interface VersaoRelatorio {
+  id: string;
+  exercicio: number;
+  titulo: string;
+  unidade_apresentadora: string;
+  status: StatusVersaoRelatorio;
+  conteudo_json: Record<string, unknown>;
+  created_by?: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 export interface Profile {
   id: string;

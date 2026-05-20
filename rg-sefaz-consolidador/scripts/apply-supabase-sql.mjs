@@ -13,7 +13,9 @@ const files = [
   "supabase/migrations/202605200001_initial_schema.sql",
   "supabase/migrations/202605200002_rls_policies.sql",
   "supabase/migrations/202605200003_dynamic_forms.sql",
+  "supabase/migrations/202605200004_tce_report_module.sql",
   "supabase/seed.sql",
+  "supabase/seed_tce.sql",
 ];
 
 const client = databaseUrl

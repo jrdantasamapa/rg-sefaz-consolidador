@@ -11,6 +11,12 @@ import { RevisaoConsolidacao } from "./pages/RevisaoConsolidacao";
 import { PreviaRelatorio } from "./pages/PreviaRelatorio";
 import { Formularios } from "./pages/Formularios";
 import { DashboardFormularios } from "./pages/DashboardFormularios";
+import { ItensTce } from "./pages/tce/ItensTce";
+import { AtribuirItemTce } from "./pages/tce/AtribuirItemTce";
+import { ResponderItemTce } from "./pages/tce/ResponderItemTce";
+import { RevisaoTce } from "./pages/tce/RevisaoTce";
+import { PendenciasTce } from "./pages/tce/PendenciasTce";
+import { PreviaTce } from "./pages/tce/PreviaTce";
 
 export const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
@@ -20,6 +26,12 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/dashboard" replace /> },
       { path: "dashboard", element: <Dashboard /> },
+      { path: "tce/itens", element: <ItensTce /> },
+      { path: "tce/atribuir/:itemId", element: <AtribuirItemTce /> },
+      { path: "tce/responder/:itemId", element: <ResponderItemTce /> },
+      { path: "tce/revisao", element: <RevisaoTce /> },
+      { path: "tce/pendencias", element: <PendenciasTce /> },
+      { path: "tce/previa", element: <PreviaTce /> },
       { path: "dashboard-formularios", element: <DashboardFormularios /> },
       { path: "unidades-setores", element: <UnidadesSetores /> },
       { path: "matriz-itens", element: <MatrizItens /> },

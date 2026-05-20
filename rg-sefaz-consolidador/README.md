@@ -8,6 +8,43 @@ O sistema deixa de ser apenas um coletor de formularios futuros e passa a organi
 
 Nao ha workflow complexo, assinatura digital, protocolo ou aprovacao multinivel nesta etapa.
 
+## Modulo TCE/AP DN 029/2025
+
+O modulo TCE transforma cada exigencia normativa em um item operacional:
+
+`Item obrigatorio do TCE -> atribuicao ao setor -> responsavel -> formulario especifico -> evidencias -> revisao -> consolidacao -> previa`
+
+Tabelas principais:
+
+- `itens_tce`
+- `atribuicoes_tce`
+- `respostas_tce`
+- `evidencias_tce`
+- `versoes_relatorio`
+
+Cada `itens_tce` possui:
+
+- parte do relatorio;
+- unidade consolidada;
+- tipo de resposta;
+- `campos_schema` em JSON;
+- indicacao de obrigatoriedade e evidencia obrigatoria;
+- orientacao de preenchimento.
+
+Tipos de resposta suportados:
+
+- `texto`
+- `tabela`
+- `indicador`
+- `financeiro`
+- `contratos`
+- `pessoal`
+- `patrimonio`
+- `controle`
+- `projeto`
+- `estrutura_documental`
+- `misto`
+
 ## Stack
 
 - React + TypeScript + Vite
@@ -68,6 +105,11 @@ Arquivos principais:
 - `anexos_vinculos`
 - `historico_status`
 - `profiles`
+- `itens_tce`
+- `atribuicoes_tce`
+- `respostas_tce`
+- `evidencias_tce`
+- `versoes_relatorio`
 
 ## Arquitetura dos formularios
 
@@ -113,10 +155,38 @@ Uma informacao so deve ser marcada como `consolidado` ou `aprovado` quando possu
 7. Revisar pendencias por item, setor, fonte e evidencia.
 8. Visualizar a previa do relatorio consolidado.
 
+## Fluxo operacional TCE
+
+1. Abrir `Itens TCE`.
+2. Filtrar por parte, status, setor ou responsavel.
+3. Atribuir item ao setor e responsavel.
+4. Responder o item com o formulario dinamico carregado por `tipo_resposta`.
+5. Vincular evidencias ou justificar ausencia.
+6. Enviar para revisao.
+7. Revisar e consolidar o texto final.
+8. Visualizar a `Previa TCE`.
+
+## Requisitos formais controlados
+
+A previa registra os requisitos da DN TCE/AP no 029/2025:
+
+- arquivo unico em PDF, exceto rol de responsaveis destacado;
+- tamanho maximo de 20MB;
+- PDF texto/pesquisavel;
+- no maximo 30% do tamanho total em imagens;
+- nome `Relatorio de gestao de 2025_SEFAZ`;
+- capa, folha de rosto, sumario, listas, introducao, desenvolvimento, resultados, conclusoes e anexos;
+- Times New Roman 12 no texto e 10 em quadros/tabelas;
+- A4, margens e espacamento 1,15.
+
 ## Telas
 
 - Dashboard de Consolidacao
 - Dashboard dos Formularios
+- Itens TCE
+- Pendencias TCE
+- Revisao TCE
+- Previa TCE
 - Setores
 - Itens do Relatorio
 - Formularios Dinamicos
